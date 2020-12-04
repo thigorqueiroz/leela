@@ -1,7 +1,7 @@
 version: '2.1'
 
 services:
-  postgresql:
+  postgresql-leela:
     image: postgres:12.3-alpine
     environment:
       - POSTGRES_PASSWORD=root
@@ -10,7 +10,7 @@ services:
     ports:
       - 5433:5432
 
-  postgresql-test:
+  postgresql-leela-test:
     image: postgres:12.3-alpine
     environment:
       - POSTGRES_PASSWORD=root
