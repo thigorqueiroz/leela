@@ -13,10 +13,3 @@ CREATE TABLE partner(
     updated_at TIMESTAMP WITH TIME ZONE,
     FOREIGN KEY(heart_team_id) REFERENCES team(id)
 );
-
-CREATE TABLE subscription_campaign(
-    team_id UUID,
-    campaign_id UUID,
-    created_at TIMESTAMP WITH TIME ZONE ,
-    updated_at TIMESTAMP WITH TIME ZONE
-);
