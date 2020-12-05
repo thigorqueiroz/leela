@@ -1,5 +1,7 @@
 package com.thigorqueiroz.leela.port.adapter.event;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thigorqueiroz.leela.application.service.PartnerService;
@@ -28,6 +30,7 @@ public class RabbitMQEventDispatcher {
     @Autowired
     public RabbitMQEventDispatcher(ObjectMapper objectMapper, RabbitTemplate rabbitTemplate) {
         this.objectMapper = objectMapper;
+        this.objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
         this.rabbitTemplate = rabbitTemplate;
     }
 
@@ -48,11 +51,3 @@ public class RabbitMQEventDispatcher {
     }
 }
 
-class RabbitEvent implements Serializable {
-    DomainEvent event;
-    String app = "partner";
-    UUID eventId = UUID.randomUUID();
-    RabbitEvent(DomainEvent event) {
-        this.event = event;
-    }
-}
