@@ -29,11 +29,13 @@ public class Partner extends AggregateRootWithIdentifierAsUUID<Partner> {
         super();
     }
 
-    public Partner(String name, String email, String birthDay) {
+    public Partner(String name, String email, String birthDay,UUID heartTeamId) {
         this.name = name;
         this.email = email;
         this.birthDay = birthDay;
+        registerEvent(new PartnerCreatedEvent(email, heartTeamId));
     }
+
 
     @Override
     public boolean equals(Object o) {

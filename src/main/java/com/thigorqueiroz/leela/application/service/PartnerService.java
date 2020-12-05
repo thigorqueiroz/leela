@@ -22,11 +22,13 @@ public class PartnerService {
 
     @Transactional
     public Partner create(CreatePartnerCommand command) {
+        logger.info("Trying to create a partner with EMAIL: '{}'" , command.email);
         partnerRepository.findByEmail(command.email)
                 .ifPresent(f -> {
+                    //TODO: send campaigns associated to request
                     throw new BusinessException("Partner is already created!");
                 });
-        var partner = new Partner(command.name, command.email, command.birthday);
+        var partner = new Partner(command.name, command.email, command.birthday, command.heartTeamId);
         return this.partnerRepository.save(partner);
     }
 
