@@ -2,6 +2,7 @@ package com.thigorqueiroz.leela.domain.model.partner;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.thigorqueiroz.leela.domain.model.common.AggregateRootWithIdentifierAsUUID;
 import com.thigorqueiroz.leela.domain.model.common.AgregateRoot;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -12,10 +13,8 @@ import java.util.UUID;
 
 @Table("partner")
 @JsonRootName("partner")
-public class Partner extends AgregateRoot {
-    @Id
-    @JsonProperty("identifier")
-    UUID id = UUID.randomUUID();
+public class Partner extends AggregateRootWithIdentifierAsUUID<Partner> {
+
     @JsonProperty("name")
     public String name;
     @JsonProperty("email")
@@ -31,7 +30,6 @@ public class Partner extends AgregateRoot {
     }
 
     public Partner(String name, String email, String birthDay) {
-        this.id = UUID.randomUUID();
         this.name = name;
         this.email = email;
         this.birthDay = birthDay;
