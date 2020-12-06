@@ -38,7 +38,7 @@ public class RabbitMQEventDispatcher {
          log.error("there isn't routing key to publish event");
         }
         try {
-            var eventAsString = objectMapper.writeValueAsString(new RabbitEvent(event));
+            var eventAsString = objectMapper.writeValueAsString(event);
             rabbitTemplate.convertAndSend(routingKey, eventAsString);
             log.info("Dispatching event to RabbitMQ: routingKey='{}', rabbitEvent='{}'", routingKey, eventAsString);
         } catch (JsonProcessingException e) {
