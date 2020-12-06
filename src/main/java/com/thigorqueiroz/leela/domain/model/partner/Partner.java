@@ -33,9 +33,8 @@ public class Partner extends AggregateRootWithIdentifierAsUUID<Partner> {
         this.name = name;
         this.email = email;
         this.birthDay = birthDay;
-        registerEvent(new PartnerCreatedEvent(email, heartTeamId));
+        registerEvent(new PartnerCreatedEvent(heartTeamId));
     }
-
 
     @Override
     public boolean equals(Object o) {
