@@ -13,7 +13,7 @@ public abstract  class AggregateRootWithIdentifierAsUUID<T> extends AgregateRoot
 
     @Id
     @JsonProperty("identifier")
-    protected UUID id;
+    protected UUID id /*= UUID.randomUUID()*/;
 
     @Override
     @JsonIgnore

@@ -3,8 +3,6 @@ package com.thigorqueiroz.leela.domain.model.partner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.thigorqueiroz.leela.domain.model.common.AggregateRootWithIdentifierAsUUID;
-import com.thigorqueiroz.leela.domain.model.common.AgregateRoot;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -33,7 +31,7 @@ public class Partner extends AggregateRootWithIdentifierAsUUID<Partner> {
         this.name = name;
         this.email = email;
         this.birthDay = birthDay;
-        registerEvent(new PartnerCreatedEvent(heartTeamId));
+        registerEvent(new PartnerCreatedEvent(heartTeamId, email));
     }
 
     @Override
