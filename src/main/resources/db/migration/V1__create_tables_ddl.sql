@@ -1,6 +1,8 @@
 CREATE TABLE team(
     id UUID PRIMARY KEY,
-    name VARCHAR(255)
+    name VARCHAR(255),
+    created_at TIMESTAMP WITH TIME ZONE,
+    updated_at TIMESTAMP WITH TIME ZONE
 );
 
 CREATE TABLE partner(
@@ -19,5 +21,6 @@ CREATE TABLE partner_campaign(
     partner_id UUID,
     campaign_id UUID,
     created_at TIMESTAMP WITH TIME ZONE ,
-    updated_at TIMESTAMP WITH TIME ZONE
+    updated_at TIMESTAMP WITH TIME ZONE,
+    FOREIGN KEY (partner_id) references  partner(id)
 );

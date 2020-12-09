@@ -60,20 +60,10 @@ public class PartnerService {
         ).orElseThrow(
                 () -> new BusinessException("Partner:  not found while trying to subscribe campaigns")
         );
-
-         var x = Streamable.of(command.campaigns).stream()
-                .peek(campaing ->
+         Streamable.of(command.campaigns).stream()
+                .forEach(campaing ->
                         partnerRepository.subscribeCampaigns(
                                 UUID.randomUUID(),
-                                partner, campaing, OffsetDateTime.now(), OffsetDateTime.now()))
-                .collect(Collectors.toList());
-        logger.info(" ===> '{}'", x);
-        /*command.campaigns.stream().peek(
-          campaignId ->  {
-              logger.info("Subscribing campaign '{}' for partner '{}'", campaignId, command.partnerId);
-              partnerRepository.subscribeCampaigns(UUID.randomUUID(), command.partnerId, campaignId, OffsetDateTime.now(), OffsetDateTime.now());
-          }
-        );*/
-
+                                partner, campaing, OffsetDateTime.now(), OffsetDateTime.now()));
     }
 }
